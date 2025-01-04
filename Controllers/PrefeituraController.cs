@@ -2,6 +2,7 @@
 using Prefeituras.Data;
 using Prefeituras.Models;
 using Prefeituras.Repository;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Prefeituras.Controllers
 {
@@ -15,49 +16,86 @@ namespace Prefeituras.Controllers
             _prefeituraRepository = prefeituraRepository;
             _bancoContext = bancoContext;
         }
-
         public IActionResult Index()
         {
             var list = _prefeituraRepository.BuscarTodos();
             return View(list);
         }
-
         public IActionResult Cadastrar()
         {
             return View();
         }
-
         public IActionResult Editar(int id)
         {   
             var list = _prefeituraRepository.BuscarPorId(id);
             return View(list);
         }
-
         public IActionResult ApagarConfirmacao(int id)
         {
             var list = _prefeituraRepository.BuscarPorId(id);
             return View(list);
         }
-
-        [HttpPost]
-        public IActionResult Cadastrar(PrefeituraModel prefeitura)
-        {
-            _prefeituraRepository.Cadastrar(prefeitura);
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public IActionResult Editar(PrefeituraModel prefeitura)
-        {
-            _prefeituraRepository.Editar(prefeitura);
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
         public IActionResult Excluir(int id)
         {
-            _prefeituraRepository.Excluir(id);
-            return RedirectToAction("Index");
+            try
+            {
+                bool apagado = _prefeituraRepository.Apagar(id);
+                if (apagado)
+                {
+                    TempData["MensagemSucesso"] = "Cadastro apagado com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = $"Ops, não conseguimos apagar seu contato!";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos apagar seu contato, mais detalhes do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Cadastrar(PrefeituraModel prefeitura)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _prefeituraRepository.Cadastrar(prefeitura);
+                    TempData["MensagemSucesso"] = "Cadastro realizado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View(prefeitura);
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu contato, tente novamente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(PrefeituraModel prefeitura)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _prefeituraRepository.Editar(prefeitura);
+                    TempData["MensagemSucesso"] = "Cadastro alterado com sucesso";
+                    return RedirectToAction("Index");
+                }
+                return View(prefeitura);
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos atualizar seu contato, tente novamente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+        }       
     }
 }

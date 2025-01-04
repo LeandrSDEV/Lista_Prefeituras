@@ -6,10 +6,30 @@
 
 <h2 class="text-center my-4 display-3">Lista de Prefeituras</h2>
 
-<a class="btn btn-primary my-2" asp-controller="Prefeitura" asp-action="Cadastrar" role="button">Cadastro de Prefeitura</a>
+<br />
 
-<div class="table-responsive id=br1"></div>
-<table class="table table-hover table">
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-center" role="alert">
+     <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+     @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-center" role="alert">
+    <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+    @TempData["MensagemErro"]
+</div>
+}
+
+<br />
+
+<a class="btn btn-primary my-3" asp-controller="Prefeitura" asp-action="Cadastrar" role="button">Cadastro de Prefeitura</a>
+
+<div class="table-responsive" id="br1">
+    <table class="table table-hover" id="table-contatos">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -44,3 +64,4 @@
 
     </tbody>
 </table>
+</div>

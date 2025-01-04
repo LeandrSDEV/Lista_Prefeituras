@@ -11,18 +11,22 @@
     <div class="form-group mt-2">
         <label for="Municipio">Município</label>
         <input type="text" class="form-control" asp-for="Municipio" placeholder="Digíte o Município">
+        @Html.ValidationMessageFor(x => x.Municipio)
     </div>
     <div class="form-group mt-2">
         <label for="Nome">Nome</label>
         <input type="text" class="form-control" asp-for="NomeRH" placeholder="Digíte o Nome">
+        @Html.ValidationMessageFor(x => x.NomeRH)
     </div>
     <div class="form-group mt-2">
         <label for="Email">E-mail</label>
         <input type="text" class="form-control" asp-for="EmailRH" placeholder="Digíte o E-mail">
+        @Html.ValidationMessageFor(x => x.EmailRH)
     </div>
     <div class="form-group mt-2">
         <label for="Telefone">Telefone</label>
         <input type="text" class="form-control" asp-for="TelefoneRH" placeholder="Digíte o Telefone">
+        @Html.ValidationMessageFor(x => x.TelefoneRH)
     </div>
     <button type="submit" class="btn btn-success mt-2 w-100">Cadastrar</button>
     <a role="button" class="btn btn-primary mt-2 w-100" asp-controller="Prefeitura" asp-action="Index">Voltar</a>

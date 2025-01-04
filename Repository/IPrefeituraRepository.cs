@@ -8,6 +8,6 @@ namespace Prefeituras.Repository
         PrefeituraModel BuscarPorId(int id);
         PrefeituraModel Cadastrar(PrefeituraModel prefeitura);
         PrefeituraModel Editar(PrefeituraModel prefeitura);
-        bool Excluir(int id);
+        bool Apagar(int id);
     }
 }

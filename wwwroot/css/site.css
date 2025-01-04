@@ -24,3 +24,16 @@ body {
 #br1 {
     border-radius: 5px;
 }
+
+.field-validation-error {
+    color: #e01d1d;
+}
+
+.close-alert {
+    position: absolute;
+    right: -15px;
+    top: -16px;
+    border-radius: 15px;
+    width: 30px;
+    height: 31px;
+}

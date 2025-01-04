@@ -1,6 +1,4 @@
-﻿using AspNetCore;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Prefeituras.Data;
+﻿using Prefeituras.Data;
 using Prefeituras.Models;
 
 namespace Prefeituras.Repository
@@ -50,15 +48,14 @@ namespace Prefeituras.Repository
             bancoDB.TelefoneRH = prefeitura.TelefoneRH;
 
             _bancoContext.SaveChanges();
-            return bancoDB;
-            
+            return bancoDB;           
         }
 
-        public bool Excluir(int id)
+        public bool Apagar(int id)
         {
             var bancoDB = BuscarPorId(id);
 
-            if (bancoDB == null) throw new Exception("Houve um erro na deleção.");
+            if (bancoDB == null) throw new Exception("Houve um erro na deleção");
 
             _bancoContext.Prefeitura.Remove(bancoDB);
             _bancoContext.SaveChanges();
