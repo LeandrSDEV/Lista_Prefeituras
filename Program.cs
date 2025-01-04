@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Prefeituras.Data;
+using Prefeituras.Repository;
 
 namespace Prefeituras
 {
@@ -14,6 +15,8 @@ namespace Prefeituras
 
             builder.Services.AddDbContext<BancoContext>(o =>
                 o.UseMySql(builder.Configuration.GetConnectionString("DataBase"), new MySqlServerVersion(new Version(8, 0, 39))));
+
+            builder.Services.AddScoped<IPrefeituraRepository, PrefeituraRepository>();
 
             var app = builder.Build();
 
