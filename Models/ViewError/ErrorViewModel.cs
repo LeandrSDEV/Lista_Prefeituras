@@ -1,4 +1,4 @@
-namespace Prefeituras.Models
+namespace Prefeituras.Models.ViewError
 {
     public class ErrorViewModel
     {
