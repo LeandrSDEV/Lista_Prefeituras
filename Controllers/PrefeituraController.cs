@@ -8,5 +8,10 @@ namespace Prefeituras.Controllers
         {
             return View();
         }
+
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
     }
 }

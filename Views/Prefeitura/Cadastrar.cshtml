@@ -1,5 +1,29 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model PrefeituraModel
+
 @{
+    ViewData["title"] = "Cadastrar Prefeitura";
 }
+
+<h2 class="text-center my-4 display-3">Cadastro de Prefeitura</h2>
+
+
+<form>
+    <div class="form-group mt-2">
+        <label for="Municipio">Município</label>
+        <input type="text" class="form-control" placeholder="Digíte o Município">
+    </div>
+    <div class="form-group mt-2">
+        <label for="Nome">Nome</label>
+        <input type="text" class="form-control" placeholder="Digíte o Nome">
+    </div>
+    <div class="form-group mt-2">
+        <label for="Email">E-mail</label>
+        <input type="text" class="form-control" placeholder="Digíte o E-mail">
+    </div>
+    <div class="form-group mt-2">
+        <label for="Telefone">Telefone</label>
+        <input type="text" class="form-control" placeholder="Digíte o Telefone">
+    </div>
+    <button type="submit" class="btn btn-primary mt-2 w-75">Submit</button>
+    <a role="button" class="btn btn-secundary mt-2 w-75" asp-controller="Prefeitura" asp-action="Index">Voltar</a>
+</form>
