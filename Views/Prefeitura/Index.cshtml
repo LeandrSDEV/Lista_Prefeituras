@@ -1,4 +1,4 @@
-﻿@model PrefeituraModel
+﻿@model IEnumerable<PrefeituraModel>
 
 @{
     ViewData["title"] = "Lista de Prefeituras";
@@ -6,33 +6,37 @@
 
 <h2 class="text-center my-4 display-3">Lista de Prefeituras</h2>
 
-<div class="table-responsive"></div>
-<table class="table">
+<a class="btn btn-primary my-2" role="button" >Cadastro de Prefeitura</a>
+
+<div class="table-responsive id=br1"></div>
+<table class="table table-hover table">
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Município</th>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Telefone</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (PrefeituraModel item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.Municipio</td>
+                    <td>@item.NomeRH</td>
+                    <td>@item.EmailRH</td>
+                    <td>@item.TelefoneRH</td>
+                    <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-primary">Editar</a>
+                        <a role="button" class="btn btn-danger">Excluir</a>
+                    </div>
+                </tr>
+            }
+        }  
     </tbody>
 </table>
