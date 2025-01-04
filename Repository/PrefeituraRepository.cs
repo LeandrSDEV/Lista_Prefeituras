@@ -1,4 +1,6 @@
-﻿using Prefeituras.Data;
+﻿using AspNetCore;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Prefeituras.Data;
 using Prefeituras.Models;
 
 namespace Prefeituras.Repository
@@ -38,7 +40,7 @@ namespace Prefeituras.Repository
 
         public PrefeituraModel Editar(PrefeituraModel prefeitura)
         {
-            var bancoDB = _bancoContext.Prefeitura.Find(prefeitura.Id);
+            var bancoDB = BuscarPorId(prefeitura.Id);
 
             if (bancoDB == null) throw new Exception("Houve um erro na atualização.");
 
@@ -50,6 +52,18 @@ namespace Prefeituras.Repository
             _bancoContext.SaveChanges();
             return bancoDB;
             
+        }
+
+        public bool Excluir(int id)
+        {
+            var bancoDB = BuscarPorId(id);
+
+            if (bancoDB == null) throw new Exception("Houve um erro na deleção.");
+
+            _bancoContext.Prefeitura.Remove(bancoDB);
+            _bancoContext.SaveChanges();
+
+            return true;
         }
     }
 }

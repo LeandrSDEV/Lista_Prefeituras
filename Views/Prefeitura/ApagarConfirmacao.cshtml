@@ -1,0 +1,11 @@
+﻿@model PrefeituraModel
+
+@{
+    ViewData["title"] = "Excluir Prefeitura";
+}
+
+<h2 class="text-center my-4 display-3">Realmente deseja excluir (@Model.Municipio)?</h2>
+
+
+<a role="button" class="btn btn-primary mt-4 w-100" asp-controller="Prefeitura" asp-action="Excluir">Excluir</a>
+<a role="button" class="btn btn-primary w-100" asp-controller="Prefeitura" asp-action="Index">Voltar</a>

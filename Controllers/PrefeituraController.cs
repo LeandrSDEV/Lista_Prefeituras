@@ -33,6 +33,12 @@ namespace Prefeituras.Controllers
             return View(list);
         }
 
+        public IActionResult ApagarConfirmacao(int id)
+        {
+            var list = _prefeituraRepository.BuscarPorId(id);
+            return View(list);
+        }
+
         [HttpPost]
         public IActionResult Cadastrar(PrefeituraModel prefeitura)
         {
@@ -44,6 +50,13 @@ namespace Prefeituras.Controllers
         public IActionResult Editar(PrefeituraModel prefeitura)
         {
             _prefeituraRepository.Editar(prefeitura);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Excluir(int id)
+        {
+            _prefeituraRepository.Excluir(id);
             return RedirectToAction("Index");
         }
     }
