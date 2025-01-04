@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Prefeituras.Data;
+
 namespace Prefeituras
 {
     public class Program
@@ -8,6 +11,9 @@ namespace Prefeituras
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<BancoContext>(o =>
+                o.UseMySql(builder.Configuration.GetConnectionString("DataBase"), new MySqlServerVersion(new Version(8, 0, 39))));
 
             var app = builder.Build();
 
