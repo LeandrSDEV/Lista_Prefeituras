@@ -27,10 +27,23 @@ namespace Prefeituras.Controllers
             return View();
         }
 
+        public IActionResult Editar(int id)
+        {   
+            var list = _prefeituraRepository.BuscarPorId(id);
+            return View(list);
+        }
+
         [HttpPost]
         public IActionResult Cadastrar(PrefeituraModel prefeitura)
         {
             _prefeituraRepository.Cadastrar(prefeitura);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Editar(PrefeituraModel prefeitura)
+        {
+            _prefeituraRepository.Editar(prefeitura);
             return RedirectToAction("Index");
         }
     }

@@ -1,13 +1,15 @@
 ﻿@model PrefeituraModel
 
 @{
-    ViewData["title"] = "Cadastrar Prefeitura";
+    ViewData["title"] = "Editar Prefeitura";
 }
 
-<h2 class="text-center my-4 display-3">Cadastro de Prefeitura</h2>
+<h2 class="text-center my-4 display-3">Edição de Prefeitura</h2>
 
 
-<form asp-controller="Prefeitura" asp-action="Cadastrar" method="post">
+<form asp-controller="Prefeitura" asp-action="Editar" method="post">
+
+    <input type="hidden" asp-for="Id" />
     <div class="form-group mt-2">
         <label for="Municipio">Município</label>
         <input type="text" class="form-control" asp-for="Municipio" placeholder="Digíte o Município">
@@ -24,6 +26,6 @@
         <label for="Telefone">Telefone</label>
         <input type="text" class="form-control" asp-for="TelefoneRH" placeholder="Digíte o Telefone">
     </div>
-    <button type="submit" class="btn btn-success mt-2 w-100">Cadastrar</button>
+    <button type="submit" class="btn btn-success mt-2 w-100">Alterar</button>
     <a role="button" class="btn btn-primary mt-2 w-100" asp-controller="Prefeitura" asp-action="Index">Voltar</a>
 </form>
