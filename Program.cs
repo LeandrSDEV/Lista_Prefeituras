@@ -17,6 +17,7 @@ namespace Prefeituras
                 o.UseMySql(builder.Configuration.GetConnectionString("DataBase"), new MySqlServerVersion(new Version(8, 0, 39))));
 
             builder.Services.AddScoped<IPrefeituraRepository, PrefeituraRepository>();
+            builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             var app = builder.Build();
 

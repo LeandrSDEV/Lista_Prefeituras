@@ -1,0 +1,73 @@
+﻿@model IEnumerable<UsuarioModel>
+
+@{
+    ViewData["title"] = "Lista de Usuarios";
+}
+
+<h2 class="text-center my-4 display-3">Lista de Usuarios</h2>
+
+<br />
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-center" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-center" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<br />
+
+<a class="btn btn-primary my-3" asp-controller="Prefeitura" asp-action="Cadastrar" role="button">Cadastro de Usuario</a>
+
+<div class="table-responsive" id="br1">
+    <table class="table table-hover" id="table-usuarios">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Login</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Data de Cadastro</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null && Model.Any())
+            {
+                @foreach (UsuarioModel item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Nome</td>
+                        <td>@item.Login</td>
+                        <td>@item.Email</td>
+                        <td>@item.DataCadastro</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary" asp-route-id="@item.Id" asp-controller="Usuario" asp-action="Editar">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@item.Id" asp-controller="Usuario" asp-action="ApagarConfirmacao">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td valign="top" colspan="5">Nenhum usuário encontrado</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
