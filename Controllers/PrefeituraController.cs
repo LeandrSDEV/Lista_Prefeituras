@@ -8,13 +8,11 @@ namespace Prefeituras.Controllers
 {
     public class PrefeituraController : Controller
     {
-        private readonly IPrefeituraRepository _prefeituraRepository;
-        private readonly BancoContext _bancoContext;
+        private readonly IPrefeituraRepository _prefeituraRepository;       
 
-        public PrefeituraController(IPrefeituraRepository prefeituraRepository, BancoContext bancoContext)
+        public PrefeituraController(IPrefeituraRepository prefeituraRepository)
         {
-            _prefeituraRepository = prefeituraRepository;
-            _bancoContext = bancoContext;
+            _prefeituraRepository = prefeituraRepository;         
         }
         public IActionResult Index()
         {

@@ -1,0 +1,40 @@
+﻿@using Prefeituras.Enuns
+@model UsuarioModel
+
+@{
+    ViewData["title"] = "Editar usuário";
+}
+
+<h2 class="text-center my-4 display-3">Edição de Usuário</h2>
+
+
+<form asp-controller="Usuario" asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id"/>
+    <div class="form-group mt-2">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" asp-for="Nome" placeholder="Digíte o nome do usuário">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+    <div class="form-group mt-2">
+        <label for="email">E-mail</label>
+        <input type="text" class="form-control" asp-for="Email" placeholder="Digíte o e-mail do usuário">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div class="form-group mt-2">
+        <label for="login">Login</label>
+        <input type="text" class="form-control" asp-for="Login" placeholder="Digíte o login do usuário">
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+    <div class="form-group my-2">
+        <label for="perfil">Perfil</label>
+        <select asp-for="Perfil" class="form-control">
+            <option value="0">Selecione</option>
+            <option value="@PerfilEnum.Admin">Administrador</option>
+            <option value="@PerfilEnum.Padrao">Padrão</option>
+        </select>
+        @Html.ValidationMessageFor(x => x.Perfil)
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2 w-100">Editar</button>
+    <a role="button" class="btn btn-primary mt-2 w-100" asp-controller="Usuario" asp-action="Index">Voltar</a>
+</form>
