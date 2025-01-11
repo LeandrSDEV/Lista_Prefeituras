@@ -12,12 +12,14 @@ namespace Prefeituras.Repository
             _bancoContext = bancoContext;
         }
 
+        public UsuarioModel BuscarPorLogin(string login)
+        {
+            return _bancoContext.Usuario.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+        }
+
         public UsuarioModel BuscarPorId(int id)
         {
-            var unico = _bancoContext.Usuario.FirstOrDefault(x => x.Id == id);
-            _bancoContext.SaveChanges();
-
-            return unico;
+            return _bancoContext.Usuario.FirstOrDefault(x => x.Id == id);           
         }
 
         public List<UsuarioModel> BuscarTodos()
@@ -64,5 +66,7 @@ namespace Prefeituras.Repository
 
             return true;
         }
+
+        
     }
 }
